@@ -52,7 +52,10 @@ class CertificateBatchWebHandler(BatchHandler):
         proof_generator = self.merkle_tree.get_proof_generator(tx_id, chain)
         for metadata in self.certificates_to_issue:
             proof_value = next(proof_generator)
-            self.proof.append(self.certificate_handler.add_proof(metadata, proof_value))
+            result = {}
+            result['txn_id'] = tx_id
+            result['body'] = self.certificate_handler.add_proof(metadata, proof_value)
+            return result
 
     def get_certificate_generator(self):
         """
