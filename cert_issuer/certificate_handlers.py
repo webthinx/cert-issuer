@@ -56,7 +56,6 @@ class CertificateBatchWebHandler(BatchHandler):
             result['txn_id'] = tx_id
             result['body'] = self.certificate_handler.add_proof(metadata, proof_value)
             self.proof.append(result)
-            return result
 
     def get_certificate_generator(self):
         """
