@@ -131,10 +131,6 @@ def add_arguments(p):
 
 
 def get_config():
-    global CONFIG
-    if CONFIG is not None:
-        return CONFIG
-
     configure_logger()
     p = configargparse.getArgumentParser(default_config_files=[os.path.join(PATH, 'conf.ini'),
                                                                '/etc/cert-issuer/conf.ini'])
@@ -162,5 +158,6 @@ def get_config():
             bitcoin_chain_for_python_bitcoinlib = Chain.bitcoin_regtest
         bitcoin.SelectParams(chain_to_bitcoin_network(bitcoin_chain_for_python_bitcoinlib))
 
+    global CONFIG
     CONFIG = parsed_config
     return parsed_config
